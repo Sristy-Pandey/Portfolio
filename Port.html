@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="Port.css">
+    <script src="https://kit.fontawesome.com/1bc3974018.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="Images/Capture.PNG" class="logo">
+                <ul>
+                    <li><a href='#header'>Home</a></li>
+                    <li><a href='#body'>About</a></li>
+                    
+                    <li><a href='#portfolio'>Portfolio</a></li>
+                    <li><a href='#contact'>Contact</a></li>   
+                </ul>
+            </nav>
+            <div class="header-text">
+                <p>Web Developer</p>
+                <h1>Hi, I'm <span>Sristy</span><br>Pandey From India</h1>
+            </div>
+        </div>
+    </div>
+    
+    <div id="body">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="Images/bck.PNG">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1><br>
+                    <p> Hello, Myself Sristy Pandey an Electronics Engineer and I'm passionate about bringing creativity to 
+                        life through Electronics. As an Engineer, I thrive on crafting unique solutions that merge my skills.Let's connect
+                        and explore how we can collaborate to achieve our goals together.<br>Thankyou! </p>
+                    
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')"> Skills</p>
+                        <p class="tab-links" onclick="opentab('education')" > Education</p>
+                        <p class="tab-links" onclick="opentab('projects')"> Projects</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>Web Development</span><br>HTML/CSS/JS</li>
+                            <li><span>Database</span><br>Python/DBMS/SQL</li>
+                            <li><span>Embedded IOT</span><br></li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>2021-2024</span><br>Bachelor of Engineering from Vidyalankar Institute of Technology</li>
+                            <li><span>2018-2021</span><br>Diploma In Electronics Engineering from Veermata Jijabai Technological Institute</li>
+                            <li><span>2018</span><br>SSC from State Board</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="projects">
+                        <ul>
+                            <li><span>Digital Health Care System</span><br>It measures the Human Heart Rate, Temperature, Humidity,etc.</li>
+                            <li><span>LoRa Home Automation</span><br>Controls the Function of  Home appliances from long range.</li>
+                            <li><span>Yantrahast: A Mechatronic Pick & Sort</span><br>It picks bulky,hazards,etc industry products and sort it according to the data using Robot ARM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--Contact-->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1><br>
+                <p><i class="fa-solid fa-envelope"></i>sristyp448@gmail.com</p>
+                <p><i class="fa-solid fa-square-phone"></i>9326563271</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/sristy.pandey.733?mibextid=rS40aB7S9Ucbxw6v"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/_.sristypandey._/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/sristy-pandey-191035241"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/Sristy-Pandey"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div> 
+                <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required><br>
+                    <input type="email" name="Email" placeholder="Your Email" required><br>
+                    <textarea name="Message"  rows="7" placeholder="Your Message"></textarea>
+                    <button type="Submit" class="btn btn2">Submit</button>
+                </form>
+                <span><div id="msg">Hope you are are doing Well</div></span>
+            </div>
+        </div>
+    </div>
+<div class="copyright">
+    <p>Copyright &copy; made with <i class="fa-solid fa-heart"></i> Sristy pandey</p>
+</div>
+</div>
+
+
+
+<script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents =document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+</script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyQKBIb3OY7hjEDGUn_VvlnnOcW-tiGO8Hz6f5ChPH76dpxrNXpZFYXJuT4K599jFnXrQ/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message Sent Successfully"
+            setTimeout(function(){
+                msg.innerHTML = ""
+             },5000)
+             form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+</body>
+</html>
